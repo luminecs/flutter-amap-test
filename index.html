@@ -27,14 +27,20 @@
   });
 
   // 接收来自Flutter App的消息
-  window.flutter_inappwebview.callHandler('messageHandler', "Hello, Flutter").then(function(result) {
-    // print the output: Hello, Flutter
-    console.log(result);
-  });
+  // window.flutter_inappwebview.callHandler('messageHandler', "Hello, Flutter").then(function(result) {
+  //   // print the output: Hello, Flutter
+  //   console.log(result);
+  // });
+  window.addEventListener("message", function(event) {
+    console.log(event.data);
+  }, false);
+
+  window.flutter_inappwebview.postMessage(["Hello, WebView"]);
 
   setInterval(function () {
     // 发送消息到Flutter App
-    window.postMessage(["Hello, WebView"], "*");
+    // window.postMessage(["Hello, WebView"], "*");
+    window.flutter_inappwebview.postMessage(["Hello, WebView"]);
   }, 2000);
 </script>
 </body>
