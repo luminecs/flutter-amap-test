@@ -25,6 +25,17 @@
     zoom:11, //初始化地图层级
     center: [119.107078, 36.70925] //初始化地图中心点
   });
+
+  // 接收来自Flutter App的消息
+  window.flutter_inappwebview.callHandler('messageHandler', "Hello, Flutter").then(function(result) {
+    // print the output: Hello, Flutter
+    console.log(result);
+  });
+
+  setInterval(function () {
+    // 发送消息到Flutter App
+    window.postMessage(["Hello, WebView"], "*");
+  }, 2000);
 </script>
 </body>
 </html>
